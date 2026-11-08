@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#153653">
-<meta name="description" content="A morning literature surveillance platform for industrial biocatalysis, powered by Crossref metadata.">
+<meta name="description" content="A morning literature surveillance platform for industrial biocatalysis, combining journal metadata with ChemRxiv and bioRxiv preprints.">
 <title>JournalScope 3.0</title>
 <style>
 :root{--navy:#153653;--blue:#246b9c;--ink:#1d2a36;--muted:#6c7b88;--line:#e5ebef;--paper:#fff;--bg:#f5f7f8;--soft:#edf4f8;--green:#167452;--amber:#996516;--purple:#7352a3;--teal:#147b78;--shadow:0 8px 26px rgba(24,48,68,.06)}
@@ -13,6 +13,8 @@ header{background:var(--navy);color:#fff}.head{max-width:1120px;margin:auto;padd
 main{max-width:1120px;margin:auto;padding:28px 22px 48px}.intro{margin-bottom:18px}.eyebrow{color:var(--blue);font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin:0 0 5px}.intro h2{font-size:27px;line-height:1.2;letter-spacing:-.04em;margin:0}.intro p{color:var(--muted);margin:7px 0 0;max-width:760px}
 .panel{background:var(--paper);border:1px solid var(--line);border-radius:15px;padding:16px;box-shadow:var(--shadow)}.dashboard{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;margin:18px 0 20px}.metric{background:#fff;border:1px solid var(--line);border-radius:13px;padding:14px 16px;min-width:0}.metric-label{color:var(--muted);font-size:11px;font-weight:750;line-height:1.35;min-height:29px}.metric-value{font-size:27px;font-weight:800;letter-spacing:-.04em;line-height:1.2;margin-top:5px;font-variant-numeric:tabular-nums}.metric-note{color:#8a969f;font-size:10px;margin-top:4px}
 .controls{display:grid;grid-template-columns:minmax(200px,1fr) auto auto;gap:10px;align-items:center}.search{width:100%;height:44px;border:1px solid #dce4ea;border-radius:10px;padding:0 13px;background:#fbfcfd;outline:none}.search:focus,select:focus{border-color:#8eb6d0;box-shadow:0 0 0 3px #246b9c17}.btn{height:42px;border:1px solid #dce4ea;background:#fff;color:#243544;border-radius:10px;padding:0 14px;font-size:13px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap}.btn:hover{background:#f6f9fb}.btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}.btn.primary:hover{background:#1c5a86}.btn:disabled{opacity:.45;cursor:not-allowed}.filters{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:12px;flex-wrap:wrap}.filter-left,.filter-right{display:flex;align-items:center;gap:9px;flex-wrap:wrap}.select{height:36px;border:1px solid #dce4ea;border-radius:9px;background:#fff;padding:0 10px;color:#334554;font-size:12px;max-width:100%}.subtle{font-size:12px;color:var(--muted)}.journal-count{color:#325c77;background:var(--soft);padding:5px 9px;border-radius:999px;font-size:11px;font-weight:750}
+.source-controls{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:12px;padding-top:12px;border-top:1px solid #eff2f4}.source-switches{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.source-switch{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:#475865;cursor:pointer}.source-switch input{accent-color:var(--blue)}.source-hint{font-size:10px;color:#8996a0}
+.source-badge{display:inline-flex;align-items:center;border-radius:6px;padding:4px 8px;font-size:10px;font-weight:800;letter-spacing:.01em}.source-badge.journal-source{background:#edf4f8;color:#2b5b79}.source-badge.chemrxiv-source{background:#f0ebf8;color:#704c9a}.source-badge.biorxiv-source{background:#e8f5f1;color:#19745b}.category-note{display:inline-flex;border-radius:999px;padding:3px 7px;background:#f1f3f5;color:#64717b;font-size:10px;font-weight:650}.preprint-flag{display:inline-flex;align-items:center;border:1px solid #e4d9f1;border-radius:999px;padding:3px 7px;color:#7352a3;background:#faf7fd;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.04em}
 .status{margin:14px 2px 12px;display:flex;align-items:center;gap:8px;color:var(--muted);font-size:12px;min-height:20px;flex-wrap:wrap}.dot{width:8px;height:8px;border-radius:50%;background:#a5b1ba;flex:none}.dot.good{background:#1d956c}.dot.busy{background:#d29a36;animation:pulse 1s infinite}.dot.warn{background:#c58b28}.status-details{margin-left:4px}.status-details summary{cursor:pointer;color:var(--blue);font-weight:700}.status-details ul{margin:7px 0 0;padding-left:18px;color:#6e7d88;max-height:180px;overflow:auto}.status-details li{margin:2px 0}@keyframes pulse{50%{opacity:.35}}
 .section-heading{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:22px 2px 10px}.section-heading h3{font-size:16px;margin:0;letter-spacing:-.01em}.section-heading span{font-size:12px;color:var(--muted)}.briefing{padding:16px}.briefing-head{display:flex;justify-content:space-between;align-items:flex-start;gap:15px;margin-bottom:12px}.briefing-title h3{font-size:17px;margin:0}.briefing-title p{font-size:12px;color:var(--muted);margin:3px 0 0}.briefing-list{display:grid;gap:8px}.brief-item{display:grid;grid-template-columns:28px minmax(0,1fr);gap:11px;padding:10px 11px;border:1px solid #edf1f3;border-radius:10px;background:#fcfdfd}.brief-rank{font-size:12px;font-weight:800;color:#82909a;padding-top:2px}.brief-content{min-width:0}.brief-content h4{font-size:13px;line-height:1.4;margin:0;font-weight:750}.brief-content h4 a{color:var(--ink);text-decoration:none}.brief-content h4 a:hover{color:var(--blue);text-decoration:underline;text-underline-offset:3px}.brief-meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:5px}.brief-journal{font-size:10px;color:#627382}.brief-stars{font-size:11px;letter-spacing:1px;color:#bd831d;white-space:nowrap}.brief-tags{display:flex;gap:5px;flex-wrap:wrap}
 .feed{display:grid;gap:10px}.article{background:#fff;border:1px solid var(--line);border-radius:13px;padding:16px 17px}.article:hover{border-color:#cbd9e3}.article-meta{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:8px}.journal{display:inline-block;background:#edf4f8;color:#2b5b79;border-radius:6px;padding:4px 8px;font-size:11px;font-weight:750}.date{color:#7a8792;font-size:11px;white-space:nowrap}.article h4{font-size:16px;line-height:1.38;letter-spacing:-.02em;margin:0;font-weight:700}.article h4 a{color:var(--ink);text-decoration:none}.article h4 a:hover{color:var(--blue);text-decoration:underline;text-underline-offset:3px}.authors{color:#687784;font-size:12px;margin:6px 0 0}.relevance-line{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px}.stars{color:#bd831d;font-size:13px;letter-spacing:1px;white-space:nowrap}.score-label{font-size:10px;color:#87939b}.chips{display:flex;gap:5px;flex-wrap:wrap}.chip{display:inline-flex;align-items:center;border-radius:999px;padding:3px 8px;font-size:10px;line-height:1.25;font-weight:750;white-space:nowrap}.chip.enzyme{background:#eaf3fb;color:#28648e}.chip.engineering{background:#f1ecfa;color:#704c9a}.chip.process{background:#e8f5f1;color:#19745b}.article-bottom{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px;padding-top:10px;border-top:1px solid #eff2f4}.article-actions{display:flex;align-items:center;gap:14px}.text-btn{border:0;background:none;padding:2px 0;color:var(--blue);font-size:12px;font-weight:750}.text-btn:hover{text-decoration:underline}.abstract{font-size:13px;color:#475865;line-height:1.65;margin:11px 0 2px;white-space:normal}.doi{font-size:10px;color:#7d8b95;overflow-wrap:anywhere}.empty{padding:35px 20px;text-align:center;background:#fff;border:1px dashed #d8e1e7;border-radius:14px;color:var(--muted)}.empty strong{display:block;color:var(--ink);font-size:15px;margin-bottom:4px}.empty p{font-size:12px;margin:0 auto 14px;max-width:500px}.loadmore{display:flex;justify-content:center;margin:18px 0}.notice{margin-top:22px;border:1px solid #e4eaee;background:#f9fbfc;border-radius:11px;padding:12px 14px;color:#6e7d88;font-size:11px}.notice strong{color:#3d5261}.spinner{width:14px;height:14px;border:2px solid #dce7ed;border-top-color:#fff;border-radius:50%;display:inline-block;animation:spin .7s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
@@ -24,9 +26,9 @@ footer{max-width:1120px;margin:auto;padding:0 22px 25px;color:#8996a0;font-size:
 </style>
 </head>
 <body>
-<header><div class="head"><div class="brand"><div class="mark" aria-hidden="true">⚗</div><div><h1>JournalScope 3.0</h1><p>Morning literature surveillance for industrial biocatalysis</p></div></div><div class="head-note">Your focused view across 25 priority chemistry journals</div></div></header>
+<header><div class="head"><div class="brand"><div class="mark" aria-hidden="true">⚗</div><div><h1>JournalScope 3.0</h1><p>Morning literature surveillance for industrial biocatalysis</p></div></div><div class="head-note">Curated across 25 journals, ChemRxiv and bioRxiv</div></div></header>
 <main>
-<section class="intro"><p class="eyebrow">Industrial biocatalysis literature radar</p><h2>Know what deserves your attention.</h2><p>Retrieve new research from your selected journals, identify enzyme and process-development signals, and start the day with a ranked briefing of the papers most relevant to industrial biocatalysis.</p></section>
+<section class="intro"><p class="eyebrow">Industrial biocatalysis literature radar</p><h2>Know what deserves your attention.</h2><p>Retrieve research from 25 priority journals plus ChemRxiv and bioRxiv, identify enzyme and process-development signals, and start the day with a ranked briefing of the papers most relevant to industrial biocatalysis.</p></section>
 <section class="dashboard" aria-label="Literature dashboard">
   <div class="metric"><div class="metric-label">Articles Retrieved</div><div class="metric-value" id="metricArticles">0</div><div class="metric-note">Records in your saved literature feed</div></div>
   <div class="metric"><div class="metric-label">★★★★★ Relevant Papers</div><div class="metric-value" id="metricFiveStar">0</div><div class="metric-note">Highest relevance score · 20+</div></div>
@@ -37,18 +39,27 @@ footer{max-width:1120px;margin:auto;padding:0 22px 25px;color:#8996a0;font-size:
   <div class="controls">
     <input class="search" id="search" type="search" placeholder="Search title, author, abstract, journal or keyword…" autocomplete="off" aria-label="Search articles">
     <button class="btn" id="manageBtn" type="button">☷ <span id="journalCount">25 journals</span></button>
-    <button class="btn primary" id="refreshBtn" type="button">↻ Refresh articles</button>
+    <button class="btn primary" id="refreshBtn" type="button">↻ Refresh literature</button>
   </div>
   <div class="filters">
     <div class="filter-left">
-      <label class="subtle" for="range">Published</label>
-      <select class="select" id="range" aria-label="Publication date range"><option value="90">Last 3 months</option><option value="30">Last 30 days</option><option value="180">Last 6 months</option><option value="365">Last year</option><option value="all">Any date retrieved</option></select>
+      <label class="subtle" for="range">Date</label>
+      <select class="select" id="range" aria-label="Publication date range"><option value="1">Daily · Last 24 hours</option><option value="7">Weekly · Last 7 days</option><option value="30">Last 30 days</option><option value="90" selected>Last 3 months</option><option value="180">Last 6 months</option><option value="365">Last year</option><option value="all">Any date retrieved</option></select>
       <select class="select" id="sortBy" aria-label="Sort articles"><option value="hybrid">Relevant + Recent</option><option value="relevant">Most Relevant</option><option value="recent">Most Recent</option></select>
       <select class="select" id="relevanceFilter" aria-label="Filter by relevance"><option value="all">All Papers</option><option value="5">★★★★★ Only</option><option value="4">★★★★ and Above</option><option value="3">★★★ and Above</option><option value="enzyme">Enzyme Papers</option><option value="process">Process Papers</option></select>
       <select class="select" id="enzymeFilter" aria-label="Filter by enzyme class"><option value="all">All Enzyme Classes</option></select>
-      <span class="journal-count" id="coverage">25 journals selected</span>
+      <select class="select" id="sourceFilter" aria-label="Filter by source"><option value="all">All Sources</option><option value="journal">Journals only</option><option value="chemrxiv">ChemRxiv only</option><option value="biorxiv">bioRxiv only</option></select>
+      <span class="journal-count" id="coverage">25 journals + 2 repositories</span>
     </div>
     <div class="filter-right"><span class="subtle" id="updated">Not refreshed yet</span></div>
+  </div>
+  <div class="source-controls" aria-label="Repository retrieval settings">
+    <div class="source-switches">
+      <strong class="subtle">Include preprints in refresh:</strong>
+      <label class="source-switch"><input id="includeChemrxiv" type="checkbox" checked> ChemRxiv</label>
+      <label class="source-switch"><input id="includeBiorxiv" type="checkbox" checked> bioRxiv</label>
+    </div>
+    <span class="source-hint">bioRxiv focus: Biochemistry, Bioengineering, Microbiology, Molecular Biology and Synthetic Biology</span>
   </div>
 </section>
 <div class="status" id="status" role="status" aria-live="polite"><span class="dot"></span><span>Ready. Refresh to retrieve the latest records.</span></div>
@@ -59,38 +70,38 @@ footer{max-width:1120px;margin:auto;padding:0 22px 25px;color:#8996a0;font-size:
 <div class="section-heading"><h3>Literature feed</h3><span id="resultCount">No records loaded</span></div>
 <section class="feed" id="feed"><div class="empty"><strong>Your literature feed is ready</strong><p>Select your journals and refresh to retrieve recent article records.</p><button class="btn primary" id="firstRefresh" type="button">Retrieve latest articles</button></div></section>
 <div class="loadmore"><button class="btn" id="loadMore" type="button" hidden>Load more articles</button></div>
-<div class="notice"><strong>About the data and ranking.</strong> Article details come from Crossref metadata. Abstracts and subject keywords appear only when deposited with Crossref. Relevance is a transparent keyword-based screening aid, not an assessment of scientific quality; check the paper itself before drawing conclusions. The briefing is generated locally from retrieved records and does not use an AI service. DOI links open the article landing page; full-text access depends on the publisher. To respect Crossref's public API limits, the app checks journals one at a time and automatically waits and retries when the service is busy. A full 25-journal refresh may take around 30–45 seconds under normal conditions.</div>
+<div class="notice"><strong>About the data and ranking.</strong> Journal metadata comes from Crossref. ChemRxiv is retrieved from its public API where accessible, with a Crossref DOI-prefix fallback; bioRxiv metadata and abstracts come from its public API. The bioRxiv search is focused on five relevant subject categories and retrieves up to 120 recent records per category. Repository searches follow the selected date window; “Any date retrieved” uses a bounded 90-day preprint window. Preprints have not necessarily been peer reviewed and are labelled separately. Relevance is a transparent keyword-based screening aid, not an assessment of scientific quality; check the paper itself before drawing conclusions. The briefing is generated locally and does not use an AI service. DOI links open the repository or article landing page; full-text access depends on the source. Retrieval is sequential and cached in this browser.</div>
 </main>
-<footer><span>JournalScope 3.0 · Independent literature reader</span><span>Metadata: <a href="https://www.crossref.org/" target="_blank" rel="noopener noreferrer">Crossref</a> · <a href="https://www.crossref.org/documentation/retrieve-metadata/rest-api/" target="_blank" rel="noopener noreferrer">API information</a></span></footer>
+<footer><span>JournalScope 3.0 · Independent literature reader</span><span>Metadata: <a href="https://www.crossref.org/" target="_blank" rel="noopener noreferrer">Crossref</a> · <a href="https://chemrxiv.org/" target="_blank" rel="noopener noreferrer">ChemRxiv</a> · <a href="https://www.biorxiv.org/" target="_blank" rel="noopener noreferrer">bioRxiv</a></span></footer>
 <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal"><div class="modal-head"><div><h3 id="modalTitle">Choose your journals</h3><p>All 25 priority journals are selected by default.</p></div><button class="x" id="closeModal" type="button" aria-label="Close">✕</button></div><div class="modal-tools"><div><button class="small" id="allBtn" type="button">Select all</button> <button class="small" id="defaultBtn" type="button">Restore priority 25</button> <button class="small" id="noneBtn" type="button">Clear</button></div><span class="subtle" id="draftCount">25 selected</span></div><div class="journal-list" id="journalList"></div><div class="modal-foot"><span class="subtle">Your selection is saved in this browser.</span><div><button class="btn" id="cancelBtn" type="button">Cancel</button><button class="btn primary" id="saveBtn" type="button">Save selection</button></div></div></div></div>
 <script>
 (()=>{'use strict';
 const JOURNALS=[
-{id:'biocat-bt',name:'Biocatalysis and Biotransformation',group:'Biocatalysis & biotechnology',aliases:['Biocatalysis and Biotransformation']},
-{id:'adv-synth-cat',name:'Advanced Synthesis & Catalysis',group:'Synthesis & process chemistry',aliases:['Advanced Synthesis and Catalysis']},
-{id:'acs-cat',name:'ACS Catalysis',group:'Catalysis',aliases:['ACS Catalysis']},
-{id:'oprd',name:'Organic Process Research & Development',group:'Synthesis & process chemistry',aliases:['Organic Process Research and Development']},
-{id:'green-chem',name:'Green Chemistry',group:'Sustainability',aliases:['Green Chemistry']},
-{id:'acs-sustainable',name:'ACS Sustainable Chemistry & Engineering',group:'Sustainability',aliases:['ACS Sustainable Chemistry and Engineering']},
-{id:'chemsuschem',name:'ChemSusChem',group:'Sustainability',aliases:['ChemSusChem']},
-{id:'chemcatchem',name:'ChemCatChem',group:'Catalysis',aliases:['ChemCatChem']},
-{id:'cat-sci-tech',name:'Catalysis Science & Technology',group:'Catalysis',aliases:['Catalysis Science and Technology']},
-{id:'reaction-chem-eng',name:'Reaction Chemistry & Engineering',group:'Synthesis & process chemistry',aliases:['Reaction Chemistry and Engineering']},
-{id:'nature-catalysis',name:'Nature Catalysis',group:'Catalysis',aliases:['Nature Catalysis']},
-{id:'angewandte',name:'Angewandte Chemie International Edition',group:'General & organic chemistry',aliases:['Angewandte Chemie International Edition','Angew Chem Int Ed']},
-{id:'jacs',name:'Journal of the American Chemical Society',group:'General & organic chemistry',aliases:['Journal of the American Chemical Society','J Am Chem Soc']},
-{id:'joc',name:'The Journal of Organic Chemistry',group:'General & organic chemistry',aliases:['The Journal of Organic Chemistry','Journal of Organic Chemistry']},
-{id:'org-letters',name:'Organic Letters',group:'General & organic chemistry',aliases:['Organic Letters']},
-{id:'chembiochem',name:'ChemBioChem',group:'Biocatalysis & biotechnology',aliases:['ChemBioChem','ChemBioChem: a European journal of chemical biology']},
-{id:'j-med-chem',name:'Journal of Medicinal Chemistry',group:'Pharmaceutical chemistry',aliases:['Journal of Medicinal Chemistry']},
-{id:'biotech-bioeng',name:'Biotechnology and Bioengineering',group:'Biocatalysis & biotechnology',aliases:['Biotechnology and Bioengineering']},
-{id:'enzyme-microb-tech',name:'Enzyme and Microbial Technology',group:'Biocatalysis & biotechnology',aliases:['Enzyme and Microbial Technology']},
-{id:'appl-microbiol-biotech',name:'Applied Microbiology and Biotechnology',group:'Biocatalysis & biotechnology',aliases:['Applied Microbiology and Biotechnology']},
-{id:'metabolic-eng',name:'Metabolic Engineering',group:'Biocatalysis & biotechnology',aliases:['Metabolic Engineering']},
-{id:'biotech-journal',name:'Biotechnology Journal',group:'Biocatalysis & biotechnology',aliases:['Biotechnology Journal']},
-{id:'process-biochem',name:'Process Biochemistry',group:'Biocatalysis & biotechnology',aliases:['Process Biochemistry']},
-{id:'j-chem-tech-biotech',name:'Journal of Chemical Technology & Biotechnology',group:'Synthesis & process chemistry',aliases:['Journal of Chemical Technology and Biotechnology']},
-{id:'curr-opin-chem-biol',name:'Current Opinion in Chemical Biology',group:'Biocatalysis & biotechnology',aliases:['Current Opinion in Chemical Biology']}
+{id:'biocat-bt',name:'Biocatalysis and Biotransformation',group:'Biocatalysis & enzyme technology',aliases:['Biocatalysis and Biotransformation']},
+{id:'npj-biocat',name:'npj Biocatalysis',group:'Biocatalysis & enzyme technology',aliases:['npj Biocatalysis']},
+{id:'chembiochem',name:'ChemBioChem',group:'Biocatalysis & enzyme technology',aliases:['ChemBioChem','ChemBioChem: a European journal of chemical biology']},
+{id:'enzyme-microb-tech',name:'Enzyme and Microbial Technology',group:'Biocatalysis & enzyme technology',aliases:['Enzyme and Microbial Technology']},
+{id:'biotech-bioeng',name:'Biotechnology and Bioengineering',group:'Biocatalysis & enzyme technology',aliases:['Biotechnology and Bioengineering']},
+{id:'appl-microbiol-biotech',name:'Applied Microbiology and Biotechnology',group:'Biocatalysis & enzyme technology',aliases:['Applied Microbiology and Biotechnology']},
+{id:'metabolic-eng',name:'Metabolic Engineering',group:'Biocatalysis & enzyme technology',aliases:['Metabolic Engineering']},
+{id:'process-biochem',name:'Process Biochemistry',group:'Biocatalysis & enzyme technology',aliases:['Process Biochemistry']},
+{id:'acs-cat',name:'ACS Catalysis',group:'Catalysis & organic synthesis',aliases:['ACS Catalysis']},
+{id:'nature-catalysis',name:'Nature Catalysis',group:'Catalysis & organic synthesis',aliases:['Nature Catalysis']},
+{id:'chemcatchem',name:'ChemCatChem',group:'Catalysis & organic synthesis',aliases:['ChemCatChem']},
+{id:'cat-sci-tech',name:'Catalysis Science & Technology',group:'Catalysis & organic synthesis',aliases:['Catalysis Science and Technology']},
+{id:'adv-synth-cat',name:'Advanced Synthesis & Catalysis',group:'Catalysis & organic synthesis',aliases:['Advanced Synthesis and Catalysis']},
+{id:'jacs',name:'Journal of the American Chemical Society',group:'Catalysis & organic synthesis',aliases:['Journal of the American Chemical Society','J Am Chem Soc']},
+{id:'angewandte',name:'Angewandte Chemie International Edition',group:'Catalysis & organic synthesis',aliases:['Angewandte Chemie International Edition','Angew Chem Int Ed']},
+{id:'org-letters',name:'Organic Letters',group:'Catalysis & organic synthesis',aliases:['Organic Letters']},
+{id:'joc',name:'The Journal of Organic Chemistry',group:'Catalysis & organic synthesis',aliases:['The Journal of Organic Chemistry','Journal of Organic Chemistry']},
+{id:'nature-synthesis',name:'Nature Synthesis',group:'Catalysis & organic synthesis',aliases:['Nature Synthesis']},
+{id:'oprd',name:'Organic Process Research & Development',group:'Process chemistry & sustainable manufacturing',aliases:['Organic Process Research and Development']},
+{id:'reaction-chem-eng',name:'Reaction Chemistry & Engineering',group:'Process chemistry & sustainable manufacturing',aliases:['Reaction Chemistry and Engineering']},
+{id:'green-chem',name:'Green Chemistry',group:'Process chemistry & sustainable manufacturing',aliases:['Green Chemistry']},
+{id:'acs-sustainable',name:'ACS Sustainable Chemistry & Engineering',group:'Process chemistry & sustainable manufacturing',aliases:['ACS Sustainable Chemistry and Engineering']},
+{id:'j-chem-tech-biotech',name:'Journal of Chemical Technology & Biotechnology',group:'Process chemistry & sustainable manufacturing',aliases:['Journal of Chemical Technology and Biotechnology']},
+{id:'nature-chemistry',name:'Nature Chemistry',group:'High-impact cross-disciplinary discovery',aliases:['Nature Chemistry']},
+{id:'acs-central-science',name:'ACS Central Science',group:'High-impact cross-disciplinary discovery',aliases:['ACS Central Science']}
 ];
 const BIOCAT_KEYWORDS={
 'Transaminase':['transaminase','aminotransferase','ATA','ω-transaminase'],
@@ -112,16 +123,45 @@ const BIOCAT_KEYWORDS={
 };
 const ENGINEERING_KEYWORDS=['directed evolution','protein engineering','enzyme engineering','site saturation mutagenesis','machine learning','deep mutational scanning','semi-rational design','rational design'];
 const PROCESS_KEYWORDS=['TTN','TON','STY','space time yield','cofactor recycling','NADH','NADPH','immobilized','immobilised','flow biocatalysis','whole-cell','whole cell','gram scale','kg scale','kilogram scale','pilot scale'];
-const KEY={prefs:'js25-prefs-v2',cache:'js25-cache-v3'};const ROWS=25,CONCURRENCY=1,REQUEST_INTERVAL=1250,MAX_RETRIES=4;let lastCrossrefRequestAt=0;
-const $=id=>document.getElementById(id);const state={selected:new Set(JOURNALS.map(j=>j.id)),draft:new Set(),articles:[],offsets:{},loaded:new Set(),hasMore:false,loading:false,search:'',lastUpdated:null,errors:[]};
+const KEY={prefs:'js25-prefs-v2',cache:'js25-cache-v3'};const ROWS=25,CONCURRENCY=1,REQUEST_INTERVAL=1250,MAX_RETRIES=4;
+const BIO_RXIV_CATEGORIES=['Biochemistry','Bioengineering','Microbiology','Molecular Biology','Synthetic Biology'];
+const BIO_RXIV_PAGE_SIZE=30,BIO_RXIV_MAX_PAGES=4,BIO_RXIV_MAX_RECORDS=120,CHEMRXIV_PAGE_SIZE=50,CHEMRXIV_MAX_PAGES=20;
+let lastCrossrefRequestAt=0,lastBioRxivRequestAt=0;
+const $=id=>document.getElementById(id);const state={selected:new Set(JOURNALS.map(j=>j.id)),draft:new Set(),articles:[],offsets:{},loaded:new Set(),hasMore:false,loading:false,search:'',lastUpdated:null,errors:[],includeChemrxiv:true,includeBiorxiv:true,needsRefresh:false};
 const norm=s=>String(s||'').toLowerCase().replace(/&/g,'and').replace(/[’']/g,'').replace(/[^a-z0-9]+/g,' ').trim().replace(/\s+/g,' ');
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function safeExternalUrl(raw){try{const u=new URL(String(raw||''),location.href);return ['http:','https:'].includes(u.protocol)?u.href:'';}catch(_){return '';}}
 function parseDate(value){if(!value)return null;const d=value instanceof Date?value:new Date(value);return Number.isNaN(d.getTime())?null:d;}
-function getDate(item){for(const key of ['published-online','published','issued','published-print','created']){const p=item[key]?.['date-parts']?.[0];if(p?.[0]){const d=new Date(Number(p[0]),Number(p[1]||1)-1,Number(p[2]||1));if(!Number.isNaN(d.getTime()))return d;}}return null;}
+function getDate(item){for(const key of ['posted','published-online','published','issued','published-print','created']){const p=item[key]?.['date-parts']?.[0];if(p?.[0]){const d=new Date(Number(p[0]),Number(p[1]||1)-1,Number(p[2]||1));if(!Number.isNaN(d.getTime()))return d;}}return null;}
 function fmtDate(d){return d&& !Number.isNaN(d.getTime())?new Intl.DateTimeFormat('en-GB',{day:'numeric',month:'short',year:'numeric'}).format(d):'Date not supplied';}
 function abstractText(raw){if(!raw)return '';const doc=new DOMParser().parseFromString(String(raw),'text/html');return (doc.body.textContent||'').replace(/\s+/g,' ').replace(/^abstract\s*/i,'').trim();}
-function authorText(a){if(!Array.isArray(a)||!a.length)return 'Author information not supplied';const names=a.slice(0,5).map(x=>[x.given,x.family].filter(Boolean).join(' ')||x.name).filter(Boolean);return names.join(', ')+(a.length>names.length?`, et al. (+${a.length-names.length})`:'');}
+function authorText(a){
+  if(typeof a==='string'&&a.trim())return a.trim();
+  if(!Array.isArray(a)||!a.length)return 'Author information not supplied';
+  const names=a.slice(0,5).map(x=>typeof x==='string'?x:[x.given,x.family].filter(Boolean).join(' ')||x.name||x.fullName||x.displayName||[x.firstName,x.lastName].filter(Boolean).join(' ')).filter(Boolean);
+  return names.join(', ')+(a.length>names.length?`, et al. (+${a.length-names.length})`:'');
+}
+function toArticle(x,j){const doi=x.DOI||'';const url=doi?`https://doi.org/${encodeURIComponent(doi)}`:(x.URL||'');return scoreArticle({key:doi?`journal:${doi.toLowerCase()}`:`${j.id}:${(x.title||['untitled'])[0]}:${JSON.stringify(getDate(x))}`,doi,title:x.title?.[0]||'Untitled article',authors:authorText(x.author),abstract:abstractText(x.abstract),journal:j.name,date:getDate(x),url:safeExternalUrl(url),publisher:x.publisher||'',keywords:Array.isArray(x.subject)?x.subject:[],sourceType:'journal',sourceLabel:'Journal',isPreprint:false});}
+function categoryNames(value){if(!value)return [];const arr=Array.isArray(value)?value:[value];return arr.map(v=>typeof v==='string'?v:(v?.name||v?.label||v?.title||v?.path||'')).filter(Boolean);}
+function parseAuthors(value){if(Array.isArray(value))return authorText(value);if(typeof value==='string')return value.trim()||'Author information not supplied';return authorText(value);}
+function toPreprintArticle(x,source){
+  x=x?.item||x?.metadata||x;
+  const isBio=source==='biorxiv';
+  const doi=String(x.doi||x.DOI||x.identifier||x.identifiers?.doi||'').replace(/^https?:\/\/(dx\.)?doi\.org\//i,'').trim();
+  const title=String(x.title||x.name||x.metadata?.title||'Untitled preprint').trim();
+  const rawDate=isBio?(x.date||x.preprint_date||x.publishedDate):(x.publishedDate||x.datePublished||x.firstPublicDate||x.date||x.createdDate||x.created||x.date_created);
+  const date=parseDate(rawDate);
+  const categories=categoryNames(x.categories||x.category||x.subjects||x.subject||x.categoryName||x.primarySubject);
+  const abstract=abstractText(x.abstract||x.description||x.summary||x.metadata?.abstract||'');
+  const version=x.version||x.versionNumber||x.currentVersion||'';
+  const rawUrl=x.url||x.URL||x.landingPage||x.landingPageUrl||x.webUrl||x.links?.self||'';
+  const url=safeExternalUrl(doi?`https://doi.org/${doi}`:rawUrl);
+  const sourceLabel=isBio?'bioRxiv':'ChemRxiv';
+  const authors=parseAuthors(x.authors||x.author||x.contributors);
+  const key=`${source}:${(doi||`${title}:${rawDate}`).toLowerCase()}`;
+  const published=x.published||x.published_doi||x.publishedDoi||'';
+  return scoreArticle({key,doi,title,authors,abstract,journal:sourceLabel,date,url,publisher:sourceLabel,keywords:categories,category:categories.join(' · '),sourceType:source,sourceLabel,isPreprint:true,preprintVersion:version?String(version):'',publishedVersion:published?String(published):''});
+}
 function matchesJournal(item,j){const titles=(item['container-title']||[]).map(norm);return [j.name,...j.aliases].map(norm).some(n=>titles.includes(n));}
 function normalizeMatchText(value){return String(value||'').toLowerCase().replace(/ω/g,'omega').replace(/β/g,'beta').replace(/&/g,' and ').replace(/[^a-z0-9]+/g,' ').trim().replace(/\s+/g,' ');}
 function hasKeyword(haystack,keyword){const phrase=normalizeMatchText(keyword);return phrase?(` ${haystack} `).includes(` ${phrase} `):false;}
@@ -141,19 +181,29 @@ function scoreArticle(article){
   article.relevance={score,stars,matches};
   return article;
 }
-function toArticle(x,j){const doi=x.DOI||'';const url=doi?`https://doi.org/${encodeURIComponent(doi)}`:(x.URL||'');return scoreArticle({key:doi||`${j.id}:${(x.title||['untitled'])[0]}:${JSON.stringify(getDate(x))}`,doi,title:x.title?.[0]||'Untitled article',authors:authorText(x.author),abstract:abstractText(x.abstract),journal:j.name,date:getDate(x),url:safeExternalUrl(url),publisher:x.publisher||'',keywords:Array.isArray(x.subject)?x.subject:[]});}
-function readSaved(){try{const p=JSON.parse(localStorage.getItem(KEY.prefs)||'null');if(Array.isArray(p?.selected)){const ids=p.selected.filter(id=>JOURNALS.some(j=>j.id===id));state.selected=new Set(ids);}const c=JSON.parse(localStorage.getItem(KEY.cache)||'null');if(c?.articles){state.articles=c.articles.map(a=>scoreArticle({...a,date:parseDate(a.date),keywords:Array.isArray(a.keywords)?a.keywords:[]}));state.offsets=c.offsets||{};state.loaded=new Set(c.loaded||[]);state.lastUpdated=parseDate(c.updated);state.hasMore=!!c.hasMore;}}catch(_){} }
-function saveCache(){try{localStorage.setItem(KEY.cache,JSON.stringify({articles:state.articles.slice(0,1200),offsets:state.offsets,loaded:[...state.loaded],updated:state.lastUpdated?.toISOString()||null,hasMore:state.hasMore}));}catch(_){setStatus('','Your browser could not save the article cache. You can still use the current results.');}}
-function savePrefs(){try{localStorage.setItem(KEY.prefs,JSON.stringify({selected:[...state.selected]}));}catch(_){} }
+function readSaved(){try{
+  const p=JSON.parse(localStorage.getItem(KEY.prefs)||'null');
+  if(Array.isArray(p?.selected)){const ids=p.selected.filter(id=>JOURNALS.some(j=>j.id===id));if(ids.length!==p.selected.length){state.selected=new Set(JOURNALS.map(j=>j.id));state.needsRefresh=true;}else state.selected=new Set(ids);}
+  if(p?.sources){state.includeChemrxiv=p.sources.chemrxiv!==false;state.includeBiorxiv=p.sources.biorxiv!==false;}
+  const c=JSON.parse(localStorage.getItem(KEY.cache)||'null');
+  if(c?.articles){const activeJournalNames=new Set(JOURNALS.flatMap(j=>[j.name,...j.aliases]).map(norm));state.articles=mergeArticles(c.articles.map(a=>scoreArticle({...a,date:parseDate(a.date),keywords:Array.isArray(a.keywords)?a.keywords:[],sourceType:a.sourceType||'journal',sourceLabel:a.sourceLabel||(a.sourceType==='journal'?'Journal':a.sourceType==='biorxiv'?'bioRxiv':'ChemRxiv'),isPreprint:!!a.isPreprint})).filter(a=>(a.sourceType||'journal')!=='journal'||activeJournalNames.has(norm(a.journal))),[]);state.offsets=c.offsets||{};state.loaded=new Set(c.loaded||[]);state.lastUpdated=parseDate(c.updated);state.hasMore=!!c.hasMore;}
+  if(state.needsRefresh)state.lastUpdated=null;
+}catch(_){} }
+function saveCache(){try{localStorage.setItem(KEY.cache,JSON.stringify({articles:state.articles.slice(0,2500),offsets:state.offsets,loaded:[...state.loaded],updated:state.lastUpdated?.toISOString()||null,hasMore:state.hasMore}));}catch(_){setStatus('','Your browser could not save the article cache. You can still use the current results.');}}
+function savePrefs(){try{localStorage.setItem(KEY.prefs,JSON.stringify({selected:[...state.selected],sources:{chemrxiv:state.includeChemrxiv,biorxiv:state.includeBiorxiv}}));}catch(_){}}
+
 function setStatus(kind,msg,details=[]){const list=details.length?`<details class="status-details"><summary>View ${details.length} retrieval issue${details.length===1?'':'s'}</summary><ul>${details.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></details>`:'';$('status').innerHTML=`<span class="dot ${kind||''}"></span><span>${esc(msg)}</span>${list}`;}
 function selectedCount(){return state.selected.size;}
-function updateTop(){$('journalCount').textContent=`${selectedCount()} journal${selectedCount()===1?'':'s'}`;$('coverage').textContent=`${selectedCount()} journals selected`;$('updated').textContent=state.lastUpdated?`Updated ${new Intl.DateTimeFormat('en-GB',{dateStyle:'medium',timeStyle:'short'}).format(state.lastUpdated)}`:'Not refreshed yet';}
+function updateTop(){$('journalCount').textContent=`${selectedCount()} journal${selectedCount()===1?'':'s'}`;$('coverage').textContent=`${selectedCount()} journals + ${(state.includeChemrxiv?1:0)+(state.includeBiorxiv?1:0)} preprint repositories`;$('updated').textContent=state.lastUpdated?`Updated ${new Intl.DateTimeFormat('en-GB',{dateStyle:'medium',timeStyle:'short'}).format(state.lastUpdated)}`:'Not refreshed yet';}
 function matchesOfType(article,type){return (article.relevance?.matches||[]).filter(m=>m.type===type);}
 function filteredArticles(){
-  const q=state.search.trim().toLowerCase();const days=$('range').value;const cutoff=days==='all'?null:new Date(Date.now()-Number(days)*86400000);const relevanceFilter=$('relevanceFilter').value;const enzymeFilter=$('enzymeFilter').value;
+  const q=state.search.trim().toLowerCase();const days=$('range').value;const cutoff=days==='all'?null:new Date(Date.now()-Number(days)*86400000);const relevanceFilter=$('relevanceFilter').value;const enzymeFilter=$('enzymeFilter').value;const sourceFilter=$('sourceFilter').value;
   return state.articles.filter(a=>{
-    const searchText=[a.title,a.authors,a.abstract,a.journal,a.doi,(a.keywords||[]).join(' '),...(a.relevance?.matches||[]).map(m=>m.label)].join(' ').toLowerCase();
-    if(cutoff&&a.date&&a.date<cutoff)return false;
+    const searchText=[a.title,a.authors,a.abstract,a.journal,a.sourceLabel,a.category,a.doi,(a.keywords||[]).join(' '),...(a.relevance?.matches||[]).map(m=>m.label)].join(' ').toLowerCase();
+    if(sourceFilter!=='all'&&(a.sourceType||'journal')!==sourceFilter)return false;
+    if((a.sourceType||'journal')==='chemrxiv'&&!state.includeChemrxiv)return false;
+    if((a.sourceType||'journal')==='biorxiv'&&!state.includeBiorxiv)return false;
+    if(cutoff&&(!a.date||Number.isNaN(a.date.getTime())||a.date<cutoff))return false;
     if(q&&!searchText.includes(q))return false;
     const stars=Number(a.relevance?.stars||1);
     if(relevanceFilter==='5'&&stars<5)return false;
@@ -173,14 +223,118 @@ function sortArticles(articles){const arr=articles.slice();const mode=$('sortBy'
   return rankingScore(b)-rankingScore(a);
 });return arr;}
 function renderTags(article){const matches=article.relevance?.matches||[];return matches.map(m=>`<span class="chip ${m.type}">${esc(m.label)}</span>`).join('');}
+function sourceBadge(article){const type=article.sourceType||'journal';const cls=type==='chemrxiv'?'chemrxiv-source':type==='biorxiv'?'biorxiv-source':'journal-source';const label=article.sourceLabel||(type==='journal'?'Journal':type==='biorxiv'?'bioRxiv':'ChemRxiv');return `<span class="source-badge ${cls}">${esc(label)}</span>`;}
+function categoryBadge(article){return article.category?`<span class="category-note">${esc(article.category)}</span>`:'';}
+function preprintVersionBadge(article){return article.isPreprint?`<span class="preprint-flag">Preprint${article.preprintVersion?` · v${esc(article.preprintVersion)}`:''}</span>`:'';}
 function starsText(article){return '★'.repeat(Math.max(1,Math.min(5,Number(article.relevance?.stars)||1)));}
 function renderDashboard(){const all=state.articles;$('metricArticles').textContent=all.length.toLocaleString('en-GB');$('metricFiveStar').textContent=all.filter(a=>(a.relevance?.stars||1)===5).length.toLocaleString('en-GB');$('metricEnzyme').textContent=all.filter(a=>matchesOfType(a,'enzyme').length>0).length.toLocaleString('en-GB');$('metricProcess').textContent=all.filter(a=>matchesOfType(a,'process').length>0).length.toLocaleString('en-GB');}
-function renderBriefing(){const arr=sortArticles(filteredArticles()).slice(0,10);const container=$('briefingList');if(!arr.length){container.innerHTML=`<div class="empty"><strong>${state.articles.length?'No papers match the current filters':'Your briefing will appear here'}</strong><p>${state.articles.length?'Broaden the search or filters to see more ranked papers.':'Retrieve articles from your selected journals to generate a ranked morning reading list.'}</p></div>`;return;}container.innerHTML=arr.map((a,i)=>{const title=a.url?`<a href="${esc(a.url)}" target="_blank" rel="noopener noreferrer">${esc(a.title)}</a>`:esc(a.title);return `<article class="brief-item"><div class="brief-rank">${i+1}</div><div class="brief-content"><h4>${title}</h4><div class="brief-meta"><span class="brief-journal">${esc(a.journal)}</span><span class="brief-stars" aria-label="${a.relevance?.stars||1} star relevance">${starsText(a)}</span><span class="brief-tags">${renderTags(a)}</span></div></div></article>`;}).join('');}
-function renderArticle(a){const abstract=a.abstract?`<details><summary class="text-btn">Show abstract</summary><p class="abstract">${esc(a.abstract)}</p></details>`:`<span class="subtle">Abstract not supplied in Crossref</span>`;const title=a.url?`<a href="${esc(a.url)}" target="_blank" rel="noopener noreferrer">${esc(a.title)}</a>`:esc(a.title);const chips=renderTags(a);return `<article class="article"><div class="article-meta"><span class="journal">${esc(a.journal)}</span><span class="date">${esc(fmtDate(a.date))}</span></div><h4>${title}</h4><p class="authors">${esc(a.authors)}</p><div class="relevance-line"><span class="stars" aria-label="${a.relevance?.stars||1} star relevance">${starsText(a)}</span><span class="score-label">Score ${Number(a.relevance?.score)||0}</span><div class="chips">${chips}</div></div><div class="article-bottom"><div class="doi">${a.doi?`DOI: ${esc(a.doi)}`:esc(a.publisher)}</div><div class="article-actions">${abstract}${a.url?`<a class="text-btn" href="${esc(a.url)}" target="_blank" rel="noopener noreferrer">Open paper ↗</a>`:''}</div></div></article>`;}
+function renderBriefing(){const arr=sortArticles(filteredArticles()).slice(0,10);const container=$('briefingList');if(!arr.length){container.innerHTML=`<div class="empty"><strong>${state.articles.length?'No papers match the current filters':'Your briefing will appear here'}</strong><p>${state.articles.length?'Broaden the search or filters to see more ranked papers.':'Retrieve journal articles and preprints to generate a ranked morning reading list.'}</p></div>`;return;}container.innerHTML=arr.map((a,i)=>{const title=a.url?`<a href="${esc(a.url)}" target="_blank" rel="noopener noreferrer">${esc(a.title)}</a>`:esc(a.title);return `<article class="brief-item"><div class="brief-rank">${i+1}</div><div class="brief-content"><h4>${title}</h4><div class="brief-meta">${sourceBadge(a)}${categoryBadge(a)}${preprintVersionBadge(a)}<span class="brief-stars" aria-label="${a.relevance?.stars||1} star relevance">${starsText(a)}</span><span class="brief-tags">${renderTags(a)}</span></div></div></article>`;}).join('');}
+function renderArticle(a){const abstract=a.abstract?`<details><summary class="text-btn">Show abstract</summary><p class="abstract">${esc(a.abstract)}</p></details>`:`<span class="subtle">Abstract not supplied by source</span>`;const title=a.url?`<a href="${esc(a.url)}" target="_blank" rel="noopener noreferrer">${esc(a.title)}</a>`:esc(a.title);const chips=renderTags(a);const meta=sourceBadge(a)+categoryBadge(a)+preprintVersionBadge(a);return `<article class="article"><div class="article-meta"><span style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">${meta}</span><span class="date">${esc(fmtDate(a.date))}</span></div><h4>${title}</h4><p class="authors">${esc(a.authors)}</p><div class="relevance-line"><span class="stars" aria-label="${a.relevance?.stars||1} star relevance">${starsText(a)}</span><span class="score-label">Score ${Number(a.relevance?.score)||0}</span><div class="chips">${chips}</div></div><div class="article-bottom"><div class="doi">${a.doi?`DOI: ${esc(a.doi)}`:esc(a.publisher)}</div><div class="article-actions">${abstract}${a.url?`<a class="text-btn" href="${esc(a.url)}" target="_blank" rel="noopener noreferrer">Open paper ↗</a>`:''}</div></div></article>`;}
 function render(){const arr=sortArticles(filteredArticles());$('resultCount').textContent=arr.length?`${arr.length.toLocaleString('en-GB')} article${arr.length===1?'':'s'}${state.search?' matching your search':''}`:'No matching articles';$('feed').innerHTML=arr.length?arr.map(renderArticle).join(''):`<div class="empty"><strong>${state.articles.length?'No articles match these filters':'No articles loaded yet'}</strong><p>${state.articles.length?'Try a broader date range, relevance level or enzyme class.':'Refresh to retrieve new records from your selected journals.'}</p>${!state.articles.length?'<button class="btn primary" id="emptyRefresh" type="button">Retrieve latest articles</button>':''}</div>`;$('loadMore').hidden=!state.hasMore||state.loading;$('loadMore').disabled=state.loading;renderDashboard();renderBriefing();updateTop();}
 async function pool(items,limit,worker){for(let i=0;i<items.length;i++){await worker(items[i],i);if(i<items.length-1)await new Promise(r=>setTimeout(r,150));}}
 async function waitForCrossrefSlot(){const wait=Math.max(0,REQUEST_INTERVAL-(Date.now()-lastCrossrefRequestAt));if(wait)await new Promise(r=>setTimeout(r,wait));lastCrossrefRequestAt=Date.now();}
 function retryDelay(res,attempt){const header=res?.headers?.get('Retry-After');if(header){const seconds=Number(header);if(Number.isFinite(seconds)&&seconds>=0)return Math.min(60000,Math.max(1000,seconds*1000));const date=Date.parse(header);if(Number.isFinite(date))return Math.min(60000,Math.max(1000,date-Date.now()));}return Math.min(30000,2500*Math.pow(2,attempt));}
+function dateRangeForPreprints(){const selected=$('range').value;const days=selected==='all'?90:Number(selected);const end=new Date();const start=new Date(end.getTime()-days*86400000);return {start:start.toISOString().slice(0,10),end:end.toISOString().slice(0,10),days};}
+function isoDateTime(day,endOfDay=false){return `${day}T${endOfDay?'23:59:59':'00:00:00'}.000Z`;}
+async function fetchJsonWithRetry(url,label,intervalMs=0){
+  let last='';
+  for(let attempt=0;attempt<3;attempt++){
+    if(intervalMs){const elapsed=Date.now()-(label==='bioRxiv'?lastBioRxivRequestAt:0);if(label==='bioRxiv'&&elapsed<intervalMs)await new Promise(r=>setTimeout(r,intervalMs-elapsed));if(label==='bioRxiv')lastBioRxivRequestAt=Date.now();}
+    const ctl=new AbortController();const timer=setTimeout(()=>ctl.abort(),30000);
+    try{const res=await fetch(url,{signal:ctl.signal,headers:{Accept:'application/json'}});if(!res.ok){last=`HTTP ${res.status}`;if([429,500,502,503,504].includes(res.status)&&attempt<2){await new Promise(r=>setTimeout(r,retryDelay(res,attempt)));continue;}throw new Error(last);}return await res.json();}
+    catch(e){last=e.name==='AbortError'?'Request timed out':(e.message||`${label} request failed`);if(attempt<2&&(/fetch|network|timed out|Failed to fetch|HTTP 429|HTTP 5/i.test(last))){await new Promise(r=>setTimeout(r,1000*Math.pow(2,attempt)));continue;}throw new Error(`${label}: ${last}`);}
+    finally{clearTimeout(timer);}
+  }
+  throw new Error(`${label}: ${last||'request failed after retries'}`);
+}
+function extractChemRxivItems(data){
+  const candidates=[data?.itemHits,data?.items,data?.results,data?.content,data?.data,data?.records,data?.itemhits,data?._embedded?.items,data?.itemHits?.items,data?.itemHits?.content];
+  for(const candidate of candidates){if(Array.isArray(candidate))return candidate;if(Array.isArray(candidate?.items))return candidate.items;if(Array.isArray(candidate?.hits))return candidate.hits;}
+  return Array.isArray(data)?data:[];
+}
+async function fetchChemRxivOfficial(range){
+  const found=[];
+  for(let page=0;page<CHEMRXIV_MAX_PAGES;page++){
+    const params=new URLSearchParams({limit:String(CHEMRXIV_PAGE_SIZE),skip:String(page*CHEMRXIV_PAGE_SIZE),sort:'PUBLISHED_DATE_DESC',searchDateFrom:isoDateTime(range.start),searchDateTo:isoDateTime(range.end,true)});
+    if(page)await new Promise(r=>setTimeout(r,450));
+    const data=await fetchJsonWithRetry(`https://chemrxiv.org/engage/chemrxiv/public-api/v1/items?${params}`,'ChemRxiv');
+    const items=extractChemRxivItems(data);found.push(...items);
+    if(items.length<CHEMRXIV_PAGE_SIZE)break;
+  }
+  if(!found.length)throw new Error('ChemRxiv public API returned no parseable records.');
+  return found.map(x=>toPreprintArticle(x,'chemrxiv')).filter(a=>a.title&&a.title!=='Untitled preprint');
+}
+async function fetchChemRxivCrossref(range){
+  const items=[];const rows=1000;const filter=[`prefix:10.26434`,`type:posted-content`,`from-posted-date:${range.start}`,`until-posted-date:${range.end}`].join(',');
+  for(let offset=0;offset<3000;offset+=rows){
+    const params=new URLSearchParams({filter,rows:String(rows),offset:String(offset),sort:'posted',order:'desc',select:'DOI,title,author,posted,created,URL,abstract,type,publisher,subject,link,relation,resource'});
+    await waitForCrossrefSlot();
+    const data=await fetchJsonWithRetry(`https://api.crossref.org/works?${params}`,'ChemRxiv Crossref fallback');
+    const page=data.message?.items||[];
+    for(const x of page){
+      const doi=x.DOI||'';const title=x.title?.[0]||'Untitled preprint';
+      items.push(toPreprintArticle({doi,title,authors:x.author,abstract:x.abstract,date:x.posted?.['date-time']||x.posted?.['date-parts']?.[0]?.join('-'),publishedDate:x.posted?.['date-time'],categories:x.subject||[],url:x.URL},'chemrxiv'));
+    }
+    if(page.length<rows)break;
+  }
+  return items;
+}
+async function fetchChemRxiv(range){
+  try{return {items:await fetchChemRxivOfficial(range),method:'ChemRxiv public API',error:null};}
+  catch(primaryError){
+    try{return {items:await fetchChemRxivCrossref(range),method:'Crossref fallback',error:`ChemRxiv public API unavailable (${primaryError.message}); Crossref fallback used.`};}
+    catch(fallbackError){return {items:[],method:'unavailable',error:`ChemRxiv public API failed (${primaryError.message}); Crossref fallback failed (${fallbackError.message}).`};}
+  }
+}
+async function fetchBioRxiv(range){
+  const found=[];const issues=[];
+  for(const category of BIO_RXIV_CATEGORIES){
+    try{
+      const categoryParam=encodeURIComponent(category.toLowerCase().replace(/\s+/g,'_'));
+      const base=`https://api.biorxiv.org/details/biorxiv/${range.start}/${range.end}/`;
+      const firstData=await fetchJsonWithRetry(`${base}0/json?category=${categoryParam}`,'bioRxiv',800);
+      const firstItems=firstData.collection||firstData.items||firstData.records||[];
+      const total=Number(firstData.messages?.[0]?.total||firstData.messages?.[0]?.count_new_papers||firstItems.length);
+      const pages=[];
+      if(total<=BIO_RXIV_PAGE_SIZE*BIO_RXIV_MAX_PAGES){
+        pages.push(firstItems);
+        for(let cursor=BIO_RXIV_PAGE_SIZE;cursor<total;cursor+=BIO_RXIV_PAGE_SIZE){
+          const data=await fetchJsonWithRetry(`${base}${cursor}/json?category=${categoryParam}`,'bioRxiv',800);
+          pages.push(data.collection||data.items||data.records||[]);
+        }
+      }else{
+        // The API cursor is an absolute record offset. Start near the end of the
+        // result set so the bounded collection contains the newest records.
+        const startCursor=Math.max(0,total-BIO_RXIV_MAX_RECORDS);
+        for(let page=0;page<BIO_RXIV_MAX_PAGES;page++){
+          const cursor=startCursor+page*BIO_RXIV_PAGE_SIZE;
+          const data=await fetchJsonWithRetry(`${base}${cursor}/json?category=${categoryParam}`,'bioRxiv',800);
+          const list=data.collection||data.items||data.records||[];
+          pages.push(list);
+          if(list.length<BIO_RXIV_PAGE_SIZE)break;
+        }
+      }
+      for(const page of pages)found.push(...page);
+    }catch(e){issues.push(`${category}: ${e.message}`);}
+  }
+  return {items:found.map(x=>toPreprintArticle(x,'biorxiv')).filter(a=>a.title&&a.title!=='Untitled preprint'),issues};
+}
+function mergeArticles(existing,incoming){
+  const map=new Map();
+  for(const article of [...existing,...incoming]){
+    const source=article.sourceType||'journal';
+    const id=article.doi?article.doi.toLowerCase():article.key;
+    const key=`${source}:${id}`;
+    if(!map.has(key))map.set(key,scoreArticle({...article,date:parseDate(article.date),sourceType:source,keywords:Array.isArray(article.keywords)?article.keywords:[]}));
+    else{
+      const current=map.get(key);
+      const currentVersion=Number(current.preprintVersion||0),incomingVersion=Number(article.preprintVersion||0);
+      if(incomingVersion>currentVersion){Object.assign(current,article);}
+      else{if((!current.abstract||current.abstract.length<50)&&article.abstract)current.abstract=article.abstract;if(!current.category&&article.category)current.category=article.category;}
+    }
+  }
+  return [...map.values()].sort((a,b)=>(b.date?.getTime()||0)-(a.date?.getTime()||0));
+}
 async function requestJournal(j,offset){
   const p=new URLSearchParams({'query.container-title':j.name,rows:String(ROWS),offset:String(offset),sort:'published',order:'desc',filter:'type:journal-article',select:'DOI,title,author,container-title,published,published-online,published-print,issued,created,URL,abstract,type,publisher,subject,is-referenced-by-count'});
   const url=`https://api.crossref.org/works?${p}`;let last='';
@@ -194,19 +348,50 @@ async function requestJournal(j,offset){
 }
 async function retrieve(older=false){
   if(state.loading)return;
-  if(!state.selected.size){state.articles=[];state.loaded.clear();state.hasMore=false;state.offsets={};saveCache();render();setStatus('','No journals selected. Open Choose journals and select at least one journal.');return;}
+  const chosen=JOURNALS.filter(j=>state.selected.has(j.id));
+  const wantChemrxiv=!older&&state.includeChemrxiv;
+  const wantBiorxiv=!older&&state.includeBiorxiv;
+  if(!chosen.length&&!wantChemrxiv&&!wantBiorxiv){setStatus('','No sources selected. Choose at least one journal or enable a preprint repository.');return;}
   if(location.protocol==='file:'){setStatus('','For live retrieval, publish this page to an HTTPS address (for example GitHub Pages). A directly opened file cannot be relied on for API access.');return;}
   state.loading=true;$('refreshBtn').disabled=true;$('refreshBtn').innerHTML='<span class="spinner"></span> Retrieving';$('loadMore').disabled=true;
-  const chosen=JOURNALS.filter(j=>state.selected.has(j.id));if(!older){state.offsets=Object.fromEntries(chosen.map(j=>[j.id,0]));state.articles=[];state.loaded.clear();state.errors=[];state.hasMore=false;}else{state.errors=[];}
-  let done=0,success=0,more=false,unmatched=0;const batch=[];setStatus('busy',`Searching ${chosen.length} journals one at a time to respect Crossref limits. This may take around 30–45 seconds…`);
-  try{await pool(chosen,CONCURRENCY,async j=>{const offset=Number(state.offsets[j.id]||0);const result=await requestJournal(j,offset);done++;if(result.error)state.errors.push(`${j.name}: ${result.error}`);else{success++;state.loaded.add(j.id);batch.push(...result.items);state.offsets[j.id]=offset+ROWS;if(result.raw>=ROWS)more=true;if(result.raw>0&&result.matched===0)unmatched++;}setStatus('busy',`Checking journals · ${done} of ${chosen.length}${state.errors.length?` · ${state.errors.length} retrieval issue${state.errors.length===1?'':'s'}`:''}`);});
-    const seen=new Set(state.articles.map(a=>a.key));for(const a of batch){scoreArticle(a);if(!seen.has(a.key)){seen.add(a.key);state.articles.push(a);}}
-    state.articles.sort((a,b)=>(b.date?.getTime()||0)-(a.date?.getTime()||0));state.hasMore=more;state.lastUpdated=success?new Date():state.lastUpdated;saveCache();
-    if(success===0)setStatus('warn',`No journal requests succeeded. ${state.errors[0]||'Check your internet connection and retry.'} Confirm the page is opened from its HTTPS website address.`,state.errors);
-    else if(state.errors.length)setStatus('warn',`Retrieved records from ${success} of ${chosen.length} journals. ${state.errors.length} request(s) still failed after automatic retries.`,state.errors);
-    else if(unmatched)setStatus('good',`Connection successful for all ${success} journals. ${batch.length} matching articles retrieved. ${unmatched} journal(s) returned Crossref records but no exact journal-title match; see the journal list if expected articles are missing.`);
-    else setStatus('good',`Successfully queried all ${success} selected journals and retrieved ${batch.length} matching records. Feed ranked by relevance and freshness.`);
-  }finally{state.loading=false;$('refreshBtn').disabled=false;$('refreshBtn').textContent='↻ Refresh articles';render();}
+  if(!older){state.offsets=Object.fromEntries(chosen.map(j=>[j.id,0]));state.articles=[];state.loaded.clear();state.errors=[];state.hasMore=false;}else{state.errors=[];}
+  let success=0,more=false,unmatched=0;const batch=[];let chemCount=0,bioCount=0;
+  const range=dateRangeForPreprints();
+  try{
+    if(chosen.length){
+      let done=0;
+      setStatus('busy',`Checking ${chosen.length} selected journals through Crossref…`);
+      await pool(chosen,CONCURRENCY,async j=>{
+        const offset=Number(state.offsets[j.id]||0);const result=await requestJournal(j,offset);done++;
+        if(result.error)state.errors.push(`${j.name}: ${result.error}`);
+        else{success++;state.loaded.add(j.id);batch.push(...result.items);state.offsets[j.id]=offset+ROWS;if(result.raw>=ROWS)more=true;if(result.raw>0&&result.matched===0)unmatched++;}
+        setStatus('busy',`Checking journals · ${done} of ${chosen.length}`);
+      });
+    }
+    if(wantChemrxiv){
+      setStatus('busy','Retrieving ChemRxiv preprints…');
+      const result=await fetchChemRxiv(range);batch.push(...result.items);chemCount=result.items.length;
+      if(result.error)state.errors.push(result.error);
+      if(result.method==='Crossref fallback')state.errors.push(`ChemRxiv records retrieved through ${result.method}; some repository-specific metadata may be absent.`);
+    }
+    if(wantBiorxiv){
+      setStatus('busy','Retrieving bioRxiv preprints in five relevant subject categories…');
+      const result=await fetchBioRxiv(range);batch.push(...result.items);bioCount=result.items.length;
+      state.errors.push(...result.issues);
+    }
+    state.articles=mergeArticles(state.articles,batch);
+    state.needsRefresh=false;
+    state.hasMore=more;state.lastUpdated=(success||chemCount||bioCount)?new Date():state.lastUpdated;saveCache();
+    const sourceSummary=[];
+    if(chosen.length)sourceSummary.push(`${success}/${chosen.length} journals queried`);
+    if(wantChemrxiv)sourceSummary.push(`${chemCount} ChemRxiv preprints`);
+    if(wantBiorxiv)sourceSummary.push(`${bioCount} bioRxiv preprints`);
+    if(!sourceSummary.length)sourceSummary.push('No sources queried');
+    if(state.errors.length)setStatus('warn',`Refresh finished: ${sourceSummary.join(' · ')}. ${state.errors.length} source or retrieval issue(s) need attention.`,state.errors);
+    else setStatus('good',`Refresh complete: ${sourceSummary.join(' · ')}. Results ranked by relevance and freshness.`);
+    if(unmatched&&!state.errors.length)setStatus('good',`Crossref connected. ${unmatched} selected journal(s) returned records without an exact journal-title match. ${sourceSummary.join(' · ')}.`);
+  }catch(e){state.errors.push(e.message||'Unexpected retrieval error');setStatus('warn',`Retrieval stopped: ${e.message||'Unexpected error'}`,state.errors);}
+  finally{state.loading=false;$('refreshBtn').disabled=false;$('refreshBtn').textContent='↻ Refresh literature';render();}
 }
 function renderJournalList(){const groups=[...new Set(JOURNALS.map(j=>j.group))];$('journalList').innerHTML=groups.map(g=>`<div class="group">${esc(g)}</div>`+JOURNALS.filter(j=>j.group===g).map(j=>`<div class="jrow"><input type="checkbox" id="j-${j.id}" data-id="${j.id}" ${state.draft.has(j.id)?'checked':''}><label for="j-${j.id}">${esc(j.name)}</label></div>`).join('')).join('');$('draftCount').textContent=`${state.draft.size} selected`;}
 function populateEnzymeFilter(){$('enzymeFilter').innerHTML='<option value="all">All Enzyme Classes</option>'+Object.keys(BIOCAT_KEYWORDS).map(name=>`<option value="${esc(name)}">${esc(name)}</option>`).join('');}
@@ -216,9 +401,13 @@ function bind(){
   $('journalList').addEventListener('change',e=>{const id=e.target?.dataset?.id;if(!id)return;if(e.target.checked)state.draft.add(id);else state.draft.delete(id);$('draftCount').textContent=`${state.draft.size} selected`;});
   $('allBtn').addEventListener('click',()=>{state.draft=new Set(JOURNALS.map(j=>j.id));renderJournalList();});$('defaultBtn').addEventListener('click',()=>{state.draft=new Set(JOURNALS.map(j=>j.id));renderJournalList();});$('noneBtn').addEventListener('click',()=>{state.draft.clear();renderJournalList();});$('saveBtn').addEventListener('click',()=>{state.selected=new Set(state.draft);savePrefs();closeModal();retrieve(false);});
   $('refreshBtn').addEventListener('click',()=>retrieve(false));$('firstRefresh').addEventListener('click',()=>retrieve(false));$('feed').addEventListener('click',e=>{if(e.target?.id==='emptyRefresh')retrieve(false);});$('search').addEventListener('input',e=>{state.search=e.target.value;render();});
-  ['range','sortBy','relevanceFilter','enzymeFilter'].forEach(id=>$(id).addEventListener('change',render));$('loadMore').addEventListener('click',()=>retrieve(true));$('refreshBriefing').addEventListener('click',()=>renderBriefing());
+  ['range','sortBy','relevanceFilter','enzymeFilter','sourceFilter'].forEach(id=>$(id).addEventListener('change',render));
+  $('includeChemrxiv').checked=state.includeChemrxiv;$('includeBiorxiv').checked=state.includeBiorxiv;
+  $('includeChemrxiv').addEventListener('change',e=>{state.includeChemrxiv=e.target.checked;savePrefs();render();});
+  $('includeBiorxiv').addEventListener('change',e=>{state.includeBiorxiv=e.target.checked;savePrefs();render();});
+  $('loadMore').addEventListener('click',()=>retrieve(true));$('refreshBriefing').addEventListener('click',()=>renderBriefing());
 }
-function init(){populateEnzymeFilter();readSaved();bind();render();if(state.articles.length){setStatus('good',`Showing ${state.articles.length} saved records from your last visit. Refresh for new articles.`);}else{setStatus('','Ready. Refresh to retrieve recent records from Crossref.');}if(location.protocol!=='file:'&&navigator.onLine&&(!state.lastUpdated||Date.now()-state.lastUpdated.getTime()>6*60*60*1000))retrieve(false);}
+function init(){populateEnzymeFilter();readSaved();bind();render();if(state.articles.length){setStatus('good',`Showing ${state.articles.length} saved journal and preprint records from your last visit. Refresh for new literature.`);}else{setStatus('','Ready. Refresh to retrieve recent records from Crossref, ChemRxiv and bioRxiv.');}if(location.protocol!=='file:'&&navigator.onLine&&(!state.lastUpdated||Date.now()-state.lastUpdated.getTime()>6*60*60*1000))retrieve(false);}
 init();
 })();
 </script>
